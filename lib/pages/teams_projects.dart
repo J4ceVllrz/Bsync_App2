@@ -51,7 +51,7 @@ class _TeamsAndProjectsState extends State<TeamsAndProjects>
           style: Styles.regularStyle.copyWith(
             letterSpacing: 1,
             fontWeight: FontWeight.bold,
-            fontSize: 20,
+            fontSize: 16,
             shadows: [
               Shadow(
                 color: AppColors.appDarkBlue.withOpacity(0.5),
@@ -62,44 +62,89 @@ class _TeamsAndProjectsState extends State<TeamsAndProjects>
           ),
         ),
         backgroundColor: AppColors.appWhite,
-        bottom: TabBar(
-          controller: _tabController,
-          tabs: const [
-            Tab(
-              text: 'Projects',
-            ),
-            Tab(text: 'Teams'),
-          ],
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(48.0),
+          child: TabBar(
+            controller: _tabController,
+            tabs: [
+              Tab(
+                child: Container(
+                  child: Text("Projects"),
+                ),
+              ),
+              Tab(text: 'Teams'),
+            ],
+          ),
         ),
       ),
       drawer: MenuDrawer(),
       backgroundColor: AppColors.appWhite,
-      body: Container(
-        child: SafeArea(
-            child: CustomScrollView(
-          slivers: [
-            SliverFillRemaining(
+      body: SafeArea(
+          child: CustomScrollView(
+        physics: BouncingScrollPhysics(),
+        slivers: [
+          SliverToBoxAdapter(
+            child: Container(
+              color: AppColors.appDarkBlue,
+              child: Text("Something here"),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Container(
+              height: 600,
               child: TabBarView(
-                physics: ClampingScrollPhysics(),
+                physics: ScrollPhysics(),
                 controller: _tabController,
                 children: [
                   Container(
-                    color: Colors.blueGrey,
+                    height: 20,
+                    margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                    decoration: BoxDecoration(
+                        color: AppColors.appWhite,
+                        borderRadius: BorderRadius.circular(8),
+                        boxShadow: [
+                          BoxShadow(
+                            color: AppColors.appDarkBlue.withOpacity(0.5),
+                            offset: const Offset(0.2, 0.2),
+                            blurRadius: 0.5,
+                          )
+                        ]),
                     child: Text(
-                      "Projects",
+                      "Projects content",
+                      textAlign: TextAlign.center,
                       style: Styles.titleStyle,
                     ),
                   ),
                   Container(
-                    color: Colors.blueGrey,
-                    child: Text("tea,sss"),
-                  )
+                    height: 20,
+                    margin: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+                    decoration: BoxDecoration(
+                        color: AppColors.appWhite,
+                        borderRadius: BorderRadius.circular(8),
+                        boxShadow: [
+                          BoxShadow(
+                            color: AppColors.appDarkBlue.withOpacity(0.5),
+                            offset: const Offset(0.2, 0.2),
+                            blurRadius: 0.5,
+                          )
+                        ]),
+                    child: Text(
+                      "Teams content",
+                      textAlign: TextAlign.center,
+                      style: Styles.titleStyle,
+                    ),
+                  ),
                 ],
               ),
-            )
-          ],
-        )),
-      ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Container(
+              child: Text("Reserved"),
+            ),
+          )
+        ],
+      )),
     );
   }
 }
