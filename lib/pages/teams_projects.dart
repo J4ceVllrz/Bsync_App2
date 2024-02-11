@@ -62,20 +62,6 @@ class _TeamsAndProjectsState extends State<TeamsAndProjects>
           ),
         ),
         backgroundColor: AppColors.appWhite,
-        bottom: PreferredSize(
-          preferredSize: Size.fromHeight(48.0),
-          child: TabBar(
-            controller: _tabController,
-            tabs: [
-              Tab(
-                child: Container(
-                  child: Text("Projects"),
-                ),
-              ),
-              Tab(text: 'Teams'),
-            ],
-          ),
-        ),
       ),
       drawer: MenuDrawer(),
       backgroundColor: AppColors.appWhite,
@@ -85,19 +71,39 @@ class _TeamsAndProjectsState extends State<TeamsAndProjects>
         slivers: [
           SliverToBoxAdapter(
             child: Container(
-              color: AppColors.appDarkBlue,
-              child: Text("Something here"),
+              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              decoration: BoxDecoration(
+                color: AppColors.appRed,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Container(
+                height: 150,
+                decoration: BoxDecoration(color: AppColors.appWhite),
+                child: Center(child: Text("Testing")),
+              ),
             ),
           ),
           SliverToBoxAdapter(
             child: Container(
+              margin: EdgeInsets.only(top: 50),
+              child: TabBar(controller: _tabController, tabs: [
+                Tab(
+                  text: "Projects",
+                ),
+                Tab(
+                  text: "Teams",
+                )
+              ]),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: SizedBox(
               height: 600,
               child: TabBarView(
-                physics: ScrollPhysics(),
                 controller: _tabController,
                 children: [
                   Container(
-                    height: 20,
                     margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                     decoration: BoxDecoration(
                         color: AppColors.appWhite,
@@ -116,7 +122,6 @@ class _TeamsAndProjectsState extends State<TeamsAndProjects>
                     ),
                   ),
                   Container(
-                    height: 20,
                     margin: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
                     decoration: BoxDecoration(
                         color: AppColors.appWhite,
