@@ -1,7 +1,10 @@
 import 'package:bsync_app2/decors/colors.dart';
+import 'package:bsync_app2/decors/text_styles.dart';
 import 'package:bsync_app2/pages/home_page.dart';
 import 'package:bsync_app2/pages/teams_projects.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 class MenuDrawer extends StatefulWidget {
   const MenuDrawer({super.key});
@@ -14,60 +17,100 @@ class _MenuDrawerState extends State<MenuDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: Container(
-        color: AppColors.appWhite,
-        child: ListView(
-          children: [
-            Container(
-              height: 250,
-              margin: const EdgeInsets.only(bottom: 30),
-              decoration: BoxDecoration(color: AppColors.appDarkBlue),
-              child: Column(
-                children: [
-                  Container(
-                    margin: const EdgeInsets.all(25),
-                    width: 150,
-                    height: 150,
-                    decoration: const BoxDecoration(
-                        color: AppColors.appWhite, shape: BoxShape.circle),
-                    child: const Icon(
-                      Icons.person,
-                      size: 100,
-                    ),
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(topRight: Radius.circular(10))),
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          DrawerHeader(
+            curve: Curves.easeInCubic,
+            decoration: BoxDecoration(gradient: AppGradients.redOrange),
+            child: Column(
+              children: [
+                Container(
+                  width: 50,
+                  height: 50,
+                  decoration: const BoxDecoration(
+                      color: AppColors.appRed, shape: BoxShape.circle),
+                  child: const Icon(
+                    Icons.person,
+                    size: 50,
                   ),
-                ],
+                ),
+              ],
+            ),
+          ),
+          Gap(20),
+          ListTile(
+            onTap: () {
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => HomePage(),
+              ));
+            },
+            leading: Container(
+                width: 40,
+                height: 40,
+                decoration: const BoxDecoration(
+                  color: AppColors.appDarkBlue,
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  LineAwesomeIcons.home,
+                  color: AppColors.appWhite,
+                )),
+            title: Text(
+              textScaler: TextScaler.noScaling,
+              "Home",
+              style: Styles.regularStyle
+                  .copyWith(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+          ),
+          ListTile(
+            onTap: () {
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => TeamsAndProjects(),
+              ));
+            },
+            leading: Container(
+              width: 40,
+              height: 40,
+              decoration: const BoxDecoration(
+                color: AppColors.appDarkBlue,
+                shape: BoxShape.circle,
+              ),
+              child: Icon(
+                LineAwesomeIcons.tasks,
+                color: AppColors.appWhite,
               ),
             ),
-            Container(
-              child: ListTile(
-                onTap: () {
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => HomePage(),
-                  ));
-                },
-                leading: Icon(Icons.home_rounded),
-                title: Text("Home"),
+            title: Text(
+              textScaler: TextScaler.noScaling,
+              "Teams and Projects",
+              style: Styles.regularStyle
+                  .copyWith(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+          ),
+          ListTile(
+            leading: Container(
+              width: 40,
+              height: 40,
+              decoration: const BoxDecoration(
+                color: AppColors.appDarkBlue,
+                shape: BoxShape.circle,
+              ),
+              child: Icon(
+                LineAwesomeIcons.cog,
+                color: AppColors.appWhite,
               ),
             ),
-            Container(
-              child: ListTile(
-                onTap: () {
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => TeamsAndProjects(),
-                  ));
-                },
-                leading: Icon(Icons.task_rounded),
-                title: Text("Teams and Projects"),
-              ),
+            title: Text(
+              textScaler: TextScaler.noScaling,
+              "Settings",
+              style: Styles.regularStyle
+                  .copyWith(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            Container(
-              child: ListTile(
-                leading: Icon(Icons.settings_rounded),
-                title: Text("Settings"),
-              ),
-            )
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

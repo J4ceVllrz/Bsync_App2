@@ -11,8 +11,8 @@ class Styles {
     fontFamily: 'Inter',
     shadows: [
       Shadow(
-          color: AppColors.appDarkBlue.withOpacity(0.5),
-          offset: Offset(0.1, 0.8),
+          color: AppColors.appDarkBlue.withOpacity(0.2),
+          offset: Offset(0.1, 0.1),
           blurRadius: 0.5),
     ],
   );
@@ -24,7 +24,7 @@ class Styles {
     shadows: [
       Shadow(
           color: AppColors.appDarkBlue.withOpacity(0.5),
-          offset: Offset(0.1, 0.8),
+          offset: Offset(0.1, 0.1),
           blurRadius: 0.5)
     ],
   );

@@ -55,7 +55,7 @@ class _TeamsAndProjectsState extends State<TeamsAndProjects>
             shadows: [
               Shadow(
                 color: AppColors.appDarkBlue.withOpacity(0.5),
-                offset: Offset(0.1, 0.8),
+                offset: const Offset(0.1, 0.8),
                 blurRadius: 0.5,
               ),
             ],
@@ -67,23 +67,22 @@ class _TeamsAndProjectsState extends State<TeamsAndProjects>
       backgroundColor: AppColors.appWhite,
       body: SafeArea(
           child: CustomScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         slivers: [
           SliverToBoxAdapter(
-            child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-              decoration: BoxDecoration(
-                color: AppColors.appRed,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Container(
-                height: 150,
-                decoration: BoxDecoration(color: AppColors.appWhite),
-                child: Center(child: Text("Testing")),
-              ),
-            ),
-          ),
+              child: GridView.count(
+            crossAxisCount: 2,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 5,
+            shrinkWrap: true,
+            children: List.generate(4, (index) {
+              return Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Card(
+                    color: AppColors.appRed,
+                  ));
+            }),
+          )),
           SliverToBoxAdapter(
             child: Container(
               margin: EdgeInsets.only(top: 50),
