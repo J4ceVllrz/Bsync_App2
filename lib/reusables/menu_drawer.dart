@@ -1,7 +1,8 @@
-import 'package:bsync_app2/decors/colors.dart';
-import 'package:bsync_app2/decors/text_styles.dart';
-import 'package:bsync_app2/pages/home_page.dart';
-import 'package:bsync_app2/pages/teams_projects.dart';
+import 'package:Bsync/authen_page/login_page.dart';
+import 'package:Bsync/decors/colors.dart';
+import 'package:Bsync/decors/text_styles.dart';
+import 'package:Bsync/pages/home_page.dart';
+import 'package:Bsync/pages/teams_projects.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
@@ -24,7 +25,9 @@ class _MenuDrawerState extends State<MenuDrawer> {
         children: [
           DrawerHeader(
             curve: Curves.easeInCubic,
-            decoration: BoxDecoration(gradient: AppGradients.redOrange),
+            decoration: BoxDecoration(
+              gradient: AppGradients.redOrange,
+            ),
             child: Column(
               children: [
                 Container(
@@ -65,6 +68,7 @@ class _MenuDrawerState extends State<MenuDrawer> {
                   .copyWith(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
+          Gap(10),
           ListTile(
             onTap: () {
               Navigator.of(context).pushReplacement(MaterialPageRoute(
@@ -90,6 +94,7 @@ class _MenuDrawerState extends State<MenuDrawer> {
                   .copyWith(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
+          Gap(10),
           ListTile(
             leading: Container(
               width: 40,
@@ -109,7 +114,37 @@ class _MenuDrawerState extends State<MenuDrawer> {
               style: Styles.regularStyle
                   .copyWith(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-          )
+          ),
+          SizedBox(
+            height: 500,
+          ),
+          ListTile(
+            onTap: () {
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => LoginPage(),
+              ));
+            },
+            leading: Container(
+              width: 25,
+              height: 25,
+              decoration: const BoxDecoration(
+                color: AppColors.appRed,
+                shape: BoxShape.circle,
+              ),
+              child: Icon(
+                LineAwesomeIcons.alternate_sign_out,
+                color: AppColors.appWhite,
+              ),
+            ),
+            title: Text(
+              textScaler: TextScaler.noScaling,
+              "Logout",
+              style: Styles.regularStyle.copyWith(
+                  fontSize: 18,
+                  fontWeight: FontWeight.normal,
+                  color: AppColors.appRed),
+            ),
+          ),
         ],
       ),
     );

@@ -1,6 +1,6 @@
-import 'package:bsync_app2/decors/colors.dart';
-import 'package:bsync_app2/decors/text_styles.dart';
-import 'package:bsync_app2/reusables/menu_drawer.dart';
+import 'package:Bsync/decors/colors.dart';
+import 'package:Bsync/decors/text_styles.dart';
+import 'package:Bsync/reusables/menu_drawer.dart';
 import 'package:flutter/material.dart';
 
 class TeamsAndProjects extends StatefulWidget {
@@ -11,7 +11,7 @@ class TeamsAndProjects extends StatefulWidget {
 }
 
 class _TeamsAndProjectsState extends State<TeamsAndProjects>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -28,6 +28,14 @@ class _TeamsAndProjectsState extends State<TeamsAndProjects>
 
   @override
   Widget build(BuildContext context) {
+    List<String> tabs = [
+      "Projects",
+      "Teams",
+    ];
+
+    final size = MediaQuery.of(context).size;
+
+    //
     return Scaffold(
       extendBodyBehindAppBar: true,
       resizeToAvoidBottomInset: true,
@@ -37,7 +45,7 @@ class _TeamsAndProjectsState extends State<TeamsAndProjects>
         child: Icon(Icons.add),
       ),
       appBar: AppBar(
-        centerTitle: true,
+        centerTitle: false,
         leading: Builder(builder: (context) {
           return GestureDetector(
             onTap: () {
@@ -46,109 +54,107 @@ class _TeamsAndProjectsState extends State<TeamsAndProjects>
             child: menuSide(context),
           );
         }),
-        title: Text(
-          "Teams and Projects",
-          style: Styles.regularStyle.copyWith(
-            letterSpacing: 1,
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
-            shadows: [
-              Shadow(
-                color: AppColors.appDarkBlue.withOpacity(0.5),
-                offset: const Offset(0.1, 0.8),
-                blurRadius: 0.5,
-              ),
-            ],
-          ),
-        ),
         backgroundColor: AppColors.appWhite,
       ),
-      drawer: MenuDrawer(),
+      drawer: const MenuDrawer(),
       backgroundColor: AppColors.appWhite,
       body: SafeArea(
           child: CustomScrollView(
         physics: const BouncingScrollPhysics(),
         slivers: [
-          SliverToBoxAdapter(
-              child: GridView.count(
-            crossAxisCount: 2,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 5,
-            shrinkWrap: true,
-            children: List.generate(4, (index) {
-              return Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Card(
-                    color: AppColors.appRed,
-                  ));
-            }),
-          )),
+          const SliverToBoxAdapter(child: SizedBox(height: 30.0)),
           SliverToBoxAdapter(
             child: Container(
-              margin: EdgeInsets.only(top: 50),
-              child: TabBar(controller: _tabController, tabs: [
-                Tab(
-                  text: "Projects",
+              margin: EdgeInsets.symmetric(horizontal: 20),
+              child: Text(
+                textAlign: TextAlign.left,
+                "Teams and Projects",
+                style: Styles.regularStyle.copyWith(
+                  letterSpacing: 0,
+                  wordSpacing: 0,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30,
+                  shadows: [
+                    Shadow(
+                      color: AppColors.appDarkBlue.withOpacity(0.5),
+                      offset: const Offset(0.1, 0.1),
+                      blurRadius: 0.3,
+                    ),
+                  ],
                 ),
-                Tab(
-                  text: "Teams",
-                )
-              ]),
+              ),
             ),
           ),
+          const SliverToBoxAdapter(child: SizedBox(height: 20.0)),
           SliverToBoxAdapter(
-            child: SizedBox(
-              height: 600,
-              child: TabBarView(
-                controller: _tabController,
-                children: [
-                  Container(
-                    margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                    decoration: BoxDecoration(
-                        color: AppColors.appWhite,
-                        borderRadius: BorderRadius.circular(8),
-                        boxShadow: [
-                          BoxShadow(
-                            color: AppColors.appDarkBlue.withOpacity(0.5),
-                            offset: const Offset(0.2, 0.2),
-                            blurRadius: 0.5,
-                          )
-                        ]),
-                    child: Text(
-                      "Projects content",
-                      textAlign: TextAlign.center,
-                      style: Styles.titleStyle,
+            child: Container(
+              margin: EdgeInsets.zero,
+              child: Align(
+                alignment: Alignment.center,
+                child: TabBar(
+                  dividerColor: Colors.transparent,
+                  tabAlignment: TabAlignment.start,
+                  labelPadding: EdgeInsets.only(right: 20, left: 20),
+                  isScrollable: true,
+                  unselectedLabelColor: AppColors.appDarkBlue,
+                  labelColor: AppColors.appRed,
+                  controller: _tabController,
+                  indicatorSize: TabBarIndicatorSize.label,
+                  indicator:
+                      CircleTabIndicator(color: AppColors.appRed, radius: 4),
+                  tabs: [
+                    Tab(
+                      text: "Projects",
                     ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-                    decoration: BoxDecoration(
-                        color: AppColors.appWhite,
-                        borderRadius: BorderRadius.circular(8),
-                        boxShadow: [
-                          BoxShadow(
-                            color: AppColors.appDarkBlue.withOpacity(0.5),
-                            offset: const Offset(0.2, 0.2),
-                            blurRadius: 0.5,
-                          )
-                        ]),
-                    child: Text(
-                      "Teams content",
-                      textAlign: TextAlign.center,
-                      style: Styles.titleStyle,
-                    ),
-                  ),
-                ],
+                    Tab(
+                      text: "Teams",
+                    )
+                  ],
+                ),
               ),
             ),
           ),
           SliverToBoxAdapter(
             child: Container(
-              child: Text("Reserved"),
+              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              height: 300,
+              child: TabBarView(controller: _tabController, children: [
+                Text("data"),
+                Text("23123123"),
+              ]),
             ),
-          )
+          ),
         ],
       )),
     );
+  }
+}
+
+class CircleTabIndicator extends Decoration {
+  //
+  final Color color;
+  final double radius;
+  const CircleTabIndicator({required this.color, required this.radius});
+  //
+  @override
+  BoxPainter createBoxPainter([VoidCallback? onChanged]) {
+    return _CirclePainter(color: color, radius: radius);
+  }
+}
+
+class _CirclePainter extends BoxPainter {
+  final Color color;
+  double radius;
+  _CirclePainter({required this.color, required this.radius});
+  @override
+  void paint(Canvas canvas, Offset offset, ImageConfiguration configuration) {
+    Paint paint = Paint();
+    paint.color = color;
+    paint.isAntiAlias = true;
+    final Offset circleOffset = Offset(
+        configuration.size!.width / 2 - radius / 2,
+        configuration.size!.height - radius - 2);
+
+    canvas.drawCircle(offset + circleOffset, radius, paint);
   }
 }

@@ -1,6 +1,7 @@
 //TextStyles
 
-import 'package:bsync_app2/decors/colors.dart';
+import 'package:Bsync/decors/colors.dart';
+
 import 'package:flutter/material.dart';
 
 class Styles {

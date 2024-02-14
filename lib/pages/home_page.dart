@@ -1,10 +1,12 @@
-import 'package:bsync_app2/decors/colors.dart';
-import 'package:bsync_app2/decors/text_styles.dart';
-import 'package:bsync_app2/pages/teams_projects.dart';
-import 'package:bsync_app2/reusables/greetings.dart';
+import 'package:Bsync/decors/colors.dart';
+import 'package:Bsync/decors/text_styles.dart';
+import 'package:Bsync/reusables/greetings.dart';
+import 'package:Bsync/reusables/menu_drawer.dart';
+
 import 'package:gap/gap.dart';
-import 'package:bsync_app2/reusables/menu_drawer.dart';
+
 import 'package:flutter/material.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomePage extends StatefulWidget {
@@ -38,7 +40,7 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: AppColors.appWhite,
       //AppBar
       appBar: AppBar(
-        centerTitle: true,
+        centerTitle: false,
         leading: Builder(builder: (context) {
           return GestureDetector(
             onTap: () {
@@ -52,8 +54,8 @@ class _HomePageState extends State<HomePage> {
           "Home",
           style: Styles.regularStyle.copyWith(
             letterSpacing: 1,
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
+            fontWeight: FontWeight.normal,
+            fontSize: 20,
             shadows: [
               Shadow(
                 color: AppColors.appDarkBlue.withOpacity(0.5),
@@ -126,11 +128,16 @@ class _HomePageState extends State<HomePage> {
                     onTap: () {
                       print('Going to all projects page');
                     },
-                    child: Text(
-                      textScaler: TextScaler.noScaling,
-                      'See All',
-                      style: Styles.regularStyle
-                          .copyWith(color: AppColors.appDarkBlue),
+                    child: Container(
+                      padding: EdgeInsets.all(2),
+                      decoration: BoxDecoration(
+                          color: AppColors.appDarkBlue,
+                          borderRadius: BorderRadius.circular(8)),
+                      child: Icon(
+                        LineAwesomeIcons.plus,
+                        size: 25,
+                        color: AppColors.appWhite,
+                      ),
                     ),
                   )
                 ],
@@ -260,83 +267,6 @@ class _HomePageState extends State<HomePage> {
                   dotHeight: 6),
             ),
           )),
-          SliverToBoxAdapter(
-            child: Container(
-              margin: const EdgeInsets.only(right: 20, left: 20, top: 10),
-              width: size.width,
-              decoration: BoxDecoration(),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: Container(
-                      width: 200,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        gradient: AppGradients.violetBlue,
-                        borderRadius: const BorderRadius.only(
-                            bottomLeft: Radius.circular(15),
-                            bottomRight: Radius.circular(15),
-                            topRight: Radius.circular(15)),
-                        boxShadow: [
-                          BoxShadow(
-                            color: AppColors.appDarkBlue.withOpacity(0.4),
-                            offset: const Offset(0.1, 0.1),
-                            blurRadius: 10,
-                          )
-                        ],
-                      ),
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          textAlign: TextAlign.center,
-                          "Create project",
-                          style: Styles.regularStyle
-                              .copyWith(color: AppColors.appWhite),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Gap(20),
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => TeamsAndProjects(),
-                        ));
-                      },
-                      child: Container(
-                        width: 150,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          gradient: AppGradients.violetBlue,
-                          borderRadius: const BorderRadius.only(
-                              bottomLeft: Radius.circular(15),
-                              bottomRight: Radius.circular(15),
-                              topLeft: Radius.circular(15)),
-                          boxShadow: [
-                            BoxShadow(
-                              color: AppColors.appDarkBlue.withOpacity(0.4),
-                              offset: const Offset(0.1, 0.1),
-                              blurRadius: 10,
-                            )
-                          ],
-                        ),
-                        child: Align(
-                            alignment: Alignment.center,
-                            child: Text(
-                              "Create task",
-                              style: Styles.regularStyle
-                                  .copyWith(color: AppColors.appWhite),
-                            )),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
 
           const SliverToBoxAdapter(child: SizedBox(height: 50)),
           SliverToBoxAdapter(
@@ -364,7 +294,7 @@ class _HomePageState extends State<HomePage> {
                       style: Styles.regularStyle
                           .copyWith(color: AppColors.appDarkBlue),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -373,15 +303,25 @@ class _HomePageState extends State<HomePage> {
           SliverToBoxAdapter(
             child: Container(
               margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              height: 300,
+              height: 70,
               decoration: BoxDecoration(
-                  color: AppColors.appDarkBlue,
+                  gradient: AppGradients.redOrange,
                   borderRadius: BorderRadius.circular(8)),
               child: ListView.builder(
-                  itemCount: 3,
+                  itemCount: 1,
                   scrollDirection: Axis.vertical,
                   itemBuilder: (context, index) {
-                    return Container();
+                    return Container(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: ListTile(
+                        contentPadding: EdgeInsets.only(left: 20, right: 20),
+                        trailing: Icon(
+                          LineAwesomeIcons.star_1,
+                          size: 30,
+                          color: AppColors.appYellow,
+                        ),
+                      ),
+                    );
                   }),
             ),
           ),

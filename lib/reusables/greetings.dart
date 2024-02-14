@@ -1,6 +1,6 @@
-import 'package:bsync_app2/decors/colors.dart';
-import 'package:bsync_app2/decors/text_styles.dart';
-import 'package:bsync_app2/reusables/date.dart';
+import 'package:Bsync/decors/colors.dart';
+import 'package:Bsync/decors/text_styles.dart';
+import 'package:Bsync/reusables/date.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
