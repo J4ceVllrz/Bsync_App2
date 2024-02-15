@@ -28,12 +28,12 @@ class _TeamsAndProjectsState extends State<TeamsAndProjects>
 
   @override
   Widget build(BuildContext context) {
-    List<String> tabs = [
-      "Projects",
-      "Teams",
-    ];
+    // List<String> tabs = [
+    //   "Projects",
+    //   "Teams",
+    // ];
 
-    final size = MediaQuery.of(context).size;
+    // final size = MediaQuery.of(context).size;
 
     //
     return Scaffold(

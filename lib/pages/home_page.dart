@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final controller = PageController(initialPage: 0);
-    EdgeInsets padding = MediaQuery.of(context).padding;
+    // EdgeInsets padding = MediaQuery.of(context).padding;
     final size = MediaQuery.of(context).size;
     return Scaffold(
       extendBodyBehindAppBar: true,
